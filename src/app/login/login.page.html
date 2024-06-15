@@ -1,0 +1,58 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8" class="titleLogin">
+        <ion-img  src="https://images.vexels.com/media/users/3/200066/isolated/preview/6778656beb270356664d5a58dc60f34e-scooter-de-entrega-de-pizza.png"
+          alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-input class="input-username" fill="outline" label="Username" labelPlacement="floating"
+          placeholder="Enter nickname or email"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-input class="input-password" fill="outline" label="Password" labelPlacement="floating"
+          placeholder="Enter password" type="password">
+
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-button [routerLink]="['/tabs']" class="button-login" shape="round" expand="block">Login</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="textCenter" size="11">
+        Forgot password?
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-button [routerLink]="['/register']" fill="outline" shape="round" expand="block" color="medium">new
+          account</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="textCenter">
+        <ion-label style="font-family:cursive;">AllDomis</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
