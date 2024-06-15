@@ -1,3 +1,21 @@
 {
-  "typescript.preferences.autoImportFileExcludePatterns": ["@ionic/angular/common", "@ionic/angular"]
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@ionic/angular/common",
+    "@ionic/angular"
+  ],
+  "workbench.colorCustomizations": {
+    "[Horizon Italic]": {
+      "editor.background": "#000000",
+      "sideBar.background": "#020202",
+      "menu.background": "#181414",
+      "activityBar.background": "#000000",
+      "titleBar.activeBackground": "#000000",
+      "sideBarSectionHeader.background": "#01180b",
+      "statusBar.foreground": "#a5a5a5",
+      "statusBar.background": "#8f046c"
+    },
+    "activityBar.background": "#54143C",
+    "titleBar.activeBackground": "#751B55",
+    "titleBar.activeForeground": "#FEFCFD"
+  }
 }
