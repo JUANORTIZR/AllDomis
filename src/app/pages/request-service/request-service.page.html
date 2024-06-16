@@ -1,0 +1,54 @@
+<ion-header [translucent]="true" #page>
+  <ion-toolbar>
+    <ion-title>Request service</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Request service</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-grid [formGroup]="profileForm">
+    <ion-row>
+      <ion-col>
+       id compañia seleccionada: {{companyIdSeled}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-input formControlName="addressA" class="input-username" fill="outline" label="Address A" labelPlacement="floating"
+          placeholder="Enter address A"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-input formControlName="addressB" class="input-password" fill="outline" label="Address B" labelPlacement="floating"
+          placeholder="Enter address b" type="text">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-textarea formControlName="description" fill="outline" label="Description" labelPlacement="floating"
+        placeholder="Enter description"></ion-textarea>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-button expand="block" (click)="confirm()" color="success" class="button-login" shape="round" expand="block">confirm</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true">
+
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+
+  <ion-accordion-group expand="inset">
+    <ion-accordion *ngFor="let company of results" value={{company.id}}>
+      <ion-item style="margin-top: 10px;" slot="header" color="light">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-img style="height:150px;" src={{company.urlImage}}
+                alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text>
+                {{company.companyName}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{company.description}}
+        <ion-button fill="" (click)="requestService(company.id)" expand="block">Solicitar</ion-button>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="success" (click)="requestService('')" routerLinkActive="router-link-active">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

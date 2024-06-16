@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8" class="titleLogin">
+        Active account
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-input class="input-username" fill="outline" label="Username" labelPlacement="floating"
+          placeholder="Enter nickname or email"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-input class="input-password" fill="outline" label="Code" labelPlacement="floating"
+          placeholder="Enter code" type="password">
+
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-button color="success" [routerLink]="['/tabs']" class="button-login" shape="round" expand="block">Active</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="textCenter" size="11">
+        Almost ✨
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-button [routerLink]="['/login']" fill="outline" shape="round" expand="block" color="medium">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="textCenter">
+        <ion-label style="font-family:cursive;">AllDomis</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
