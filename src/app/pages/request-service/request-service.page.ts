@@ -69,9 +69,6 @@ export class RequestServicePage implements OnInit {
     this.serviceDelivery.requestService(requestService).then((data) => {
        console.log(data);
        this.router.navigate(['/tab2'])
-       if(data.ok){
-        this.router.navigate(['/tab2'])
-       }
     });
 
   }

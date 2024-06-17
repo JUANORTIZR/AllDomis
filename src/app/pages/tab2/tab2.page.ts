@@ -3,6 +3,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { DeliveryService } from 'src/app/service/delivery/delivery.service';
 import { CommonModule } from '@angular/common';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-tab2',
@@ -13,10 +14,24 @@ import { CommonModule } from '@angular/common';
 })
 export class Tab2Page {
 
- deliverys : any[] = [];
+  deliverys: any[] = [];
 
-  constructor(private deliveryService: DeliveryService) {
-    this.deliveryService.getDeliverysByEmail("juan@gmail.com").then((data) => this.deliverys = data)
+  userActive: any;
+
+  constructor(private deliveryService: DeliveryService, private storage: Storage) {
+    this.storage.create()
+    this.getDataStorage().then((data) => {
+      this.userActive = data;
+      console.log("dentro de then: ", this.userActive);
+      this.deliveryService.getDeliverysByEmail(this.userActive.phoneNumber.value).then((data) => this.deliverys = data)
+    })
   }
+
+  async getDataStorage() {
+    let user = await this.storage.get('user')
+
+    return user;
+  }
+
 
 }
