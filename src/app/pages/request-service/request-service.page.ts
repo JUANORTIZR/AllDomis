@@ -20,19 +20,24 @@ export class RequestServicePage implements OnInit {
 
   companyIdSeled: string = "2";
   http: HttpClient;
-  constructor(private ruteActive : ActivatedRoute, private serviceDelivery: DeliveryService, private storage: Storage) {
+  userActive: any;
+  constructor(private ruteActive : ActivatedRoute,  private router: Router, private serviceDelivery: DeliveryService, private storage: Storage) {
     this.ruteActive.queryParams.subscribe(params => {
       console.log("companyId: " + params['companyId']);
         this.companyIdSeled = params['companyId']
     })
     this.http = inject(HttpClient)
+    this.storage.create()
+    this.getDataStorage().then((data) => {this.userActive = data; console.log("dentro de then: ", this.userActive);
+    })
+
   }
 
 
   profileForm!: FormGroup;
 
   ngOnInit() {
-    this.storage.create()
+
 
     this.profileForm = new FormGroup({
       addressA: new FormControl(''),
@@ -41,24 +46,32 @@ export class RequestServicePage implements OnInit {
     });
   }
 
+  async getDataStorage(){
+    let user = await this.storage.get('user')
+
+    return user;
+  }
+
   confirm(){
     const requestService = new RequestDelivery();
+    console.log("UserAtributte: ", this.userActive);
+    console.log("Telefono: ", this.userActive.phoneNumber.value);
 
     requestService.precio = 2000
     requestService.nombre = "domicilio"
     requestService.idEmpresa = this.companyIdSeled;
     requestService.fecha = new Date().toDateString();
-    requestService.correoUsuario = "juan@gmail.com";
+    requestService.correoUsuario = this.userActive.phoneNumber.value;
     requestService.descripcion = this.profileForm.value.description == undefined ? "" : this.profileForm.value.description;
     requestService.direccionDestino = this.profileForm.value.addressB == undefined ? "" : this.profileForm.value.addressB;
     requestService.direccionOrigen = this.profileForm.value.addressA == undefined ? "" : this.profileForm.value.addressA;
 
-    // const headers = { 'Content-Type': 'application/json' };
-    // this.http.post<any>("http://34.221.27.157:31168/Domicilio/crear", JSON.stringify(requestService), { headers }).subscribe((data:any) => {console.log(data);
-    // })
-
     this.serviceDelivery.requestService(requestService).then((data) => {
        console.log(data);
+       this.router.navigate(['/tab2'])
+       if(data.ok){
+        this.router.navigate(['/tab2'])
+       }
     });
 
   }

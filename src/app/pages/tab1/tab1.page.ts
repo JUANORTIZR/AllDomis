@@ -26,7 +26,7 @@ export class Tab1Page {
 
   handleInput(event: any) {
     const query = event.target.value.toLowerCase();
-    this.results = this.companies.filter((d) => d.title.toLowerCase().indexOf(query) > -1);
+    this.results = this.companies.filter((d) => d.companyName.toLowerCase().indexOf(query) > -1);
   }
 
   requestService(id: string){

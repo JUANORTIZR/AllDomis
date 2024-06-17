@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { RequestLogin } from 'src/app/domain/request/request-login';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Storage } from '@ionic/storage-angular';
+import { UserActive } from 'src/app/domain/entity/userActiveData';
 
 @Component({
   selector: 'app-login',
@@ -52,8 +53,18 @@ export class LoginPage implements OnInit {
 
     this.loginService.login(request).then((data) => {
       this.dataUser = data;
+
+      let user = new UserActive();
+
+      user.phoneNumber = this.dataUser.userAttributes[5]
+      user.email = this.dataUser.userAttributes[7]
+      user.nickname = this.dataUser.userAttributes[3]
+      user.name = this.dataUser.userAttributes[2]
+
+      this.storage.set('user', user);
       this.redirect(data);
-      this.storage.set('user', this.dataUser.userAttributes);
+
+
     });
   }
 
