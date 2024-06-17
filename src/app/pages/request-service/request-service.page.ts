@@ -1,4 +1,4 @@
-import { Component, OnInit, model } from '@angular/core';
+import { Component, OnInit, inject, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonButton, IonCol, IonRow, IonImg, IonGrid, IonInput, IonAccordionGroup, IonAccordion, IonItem, IonModal, IonTextarea } from '@ionic/angular/standalone';
@@ -6,7 +6,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DeliveryService } from 'src/app/service/delivery/delivery.service';
 import { RequestDelivery } from 'src/app/domain/request/request-delivery';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-request-service',
@@ -18,17 +19,21 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class RequestServicePage implements OnInit {
 
   companyIdSeled: string = "2";
-  constructor(private ruteActive : ActivatedRoute, private serviceDelivery: DeliveryService) {
+  http: HttpClient;
+  constructor(private ruteActive : ActivatedRoute, private serviceDelivery: DeliveryService, private storage: Storage) {
     this.ruteActive.queryParams.subscribe(params => {
       console.log("companyId: " + params['companyId']);
         this.companyIdSeled = params['companyId']
     })
+    this.http = inject(HttpClient)
   }
 
 
   profileForm!: FormGroup;
 
   ngOnInit() {
+    this.storage.create()
+
     this.profileForm = new FormGroup({
       addressA: new FormControl(''),
       addressB: new FormControl(''),
@@ -48,8 +53,12 @@ export class RequestServicePage implements OnInit {
     requestService.direccionDestino = this.profileForm.value.addressB == undefined ? "" : this.profileForm.value.addressB;
     requestService.direccionOrigen = this.profileForm.value.addressA == undefined ? "" : this.profileForm.value.addressA;
 
+    // const headers = { 'Content-Type': 'application/json' };
+    // this.http.post<any>("http://34.221.27.157:31168/Domicilio/crear", JSON.stringify(requestService), { headers }).subscribe((data:any) => {console.log(data);
+    // })
+
     this.serviceDelivery.requestService(requestService).then((data) => {
-      console.log(data);
+       console.log(data);
     });
 
   }

@@ -12,4 +12,5 @@ export class CompanyServiceService {
     const data = await response.json();
     return data;
   }
+
 }

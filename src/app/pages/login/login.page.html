@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [formGroup]="profileForm">
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size="8" class="titleLogin">
@@ -10,14 +10,14 @@
 
     <ion-row class="ion-justify-content-center">
       <ion-col size="11">
-        <ion-input class="input-username" fill="outline" label="Username" labelPlacement="floating"
+        <ion-input formControlName="username" class="input-username" fill="outline" label="Username" labelPlacement="floating"
           placeholder="Enter nickname or email"></ion-input>
       </ion-col>
     </ion-row>
 
     <ion-row class="ion-justify-content-center">
       <ion-col size="11">
-        <ion-input class="input-password" fill="outline" label="Password" labelPlacement="floating"
+        <ion-input formControlName="password" class="input-password" fill="outline" label="Password" labelPlacement="floating"
           placeholder="Enter password" type="password">
 
         </ion-input>
@@ -26,7 +26,7 @@
 
     <ion-row class="ion-justify-content-center">
       <ion-col size="11">
-        <ion-button color="success" [routerLink]="['/tabs']" class="button-login" shape="round" expand="block">Login</ion-button>
+        <ion-button color="success" (click)="login()" class="button-login" shape="round" expand="block">Login</ion-button>
       </ion-col>
     </ion-row>
 
