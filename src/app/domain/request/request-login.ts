@@ -11,3 +11,7 @@ export class RequestRegister {
   name!: string;
   phone_number!: string;
 }
+export class RequestActivate {
+  nickname!: string;
+  code!: string;
+}
